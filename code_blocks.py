@@ -1,3 +1,5 @@
+import config
+
 def get_readable_users(data_list):
     email_mapper = lambda user:user['emailAddress']
     reading_filter = lambda user:user['role']=='reader'
@@ -5,7 +7,7 @@ def get_readable_users(data_list):
 
 
 def get_submited_users(data_list):
-    email_mapper = lambda user:user['email']
+    email_mapper = lambda user:user[config.DATA_COLUMN_TITLE]
     return list(map(email_mapper, data_list))
 
 # def grant_access_from_partial(core):
