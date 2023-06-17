@@ -21,8 +21,11 @@ def get_submited_users(data_list):
 
 def grant_access_from_partial(core):
     submitted_users = core.get_submited_users()
+    print(submitted_users)
     users_with_access = core.get_readable_users()
+    print(users_with_access)
     users_without_access = [user for user in submitted_users if user not in users_with_access]
+    print(users_without_access)
 
     successful = list()
     unsuccessful = list()
