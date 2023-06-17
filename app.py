@@ -27,9 +27,10 @@ def grant_access():
     unsuccessful = list()
 
     for user in users_without_access:
-        try:
-            permissions.create_permission(user, drive, config.SHARED_FOLDER_ID)
-            successful.append(user)
-        except HttpError as err:
-            unsuccessful.append((user, err.reason))
+        if user:
+            try:
+                permissions.create_permission(user, drive, config.SHARED_FOLDER_ID)
+                successful.append(user)
+            except HttpError as err:
+                unsuccessful.append((user, err.reason))
     return render_template('access_template.html', successful=successful, unsuccessful=unsuccessful)
