@@ -7,8 +7,8 @@ def get_readable_users(data_list):
 
 
 def get_submited_users(data_list):
-    email_mapper = lambda user:user[config.DATA_COLUMN_TITLE]
-    return list(map(email_mapper, data_list))
+    email_mapper = lambda user:user.get(config.DATA_COLUMN_TITLE,"")
+    return list(filter(lambda email:email.strip(), map(email_mapper, data_list)))
 
 # def grant_access_from_partial(core):
 #     submitted_users = core.get_submited_users()
