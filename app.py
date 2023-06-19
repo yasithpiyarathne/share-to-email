@@ -16,9 +16,9 @@ def grant_access():
     sheet = build('sheets', 'v4', credentials=credentials)
     drive = build('drive', 'v3', credentials=credentials)
 
-    submitted_users = code_blocks.get_submited_users(sheets.get_sheet_data(sheet, config.DATA_SHEET_ID, config.DATA_SHEET_TITLE))
+    submitted_users = [i.lower().strip() for i in code_blocks.get_submited_users(sheets.get_sheet_data(sheet, config.DATA_SHEET_ID, config.DATA_SHEET_TITLE))]
     print(submitted_users)
-    users_with_access = code_blocks.get_readable_users(permissions.list_permissions(drive, config.SHARED_FOLDER_ID))
+    users_with_access = [i.lower().strip() for i in code_blocks.get_readable_users(permissions.list_permissions(drive, config.SHARED_FOLDER_ID))]
     print(users_with_access)
 
     users_without_access = [user for user in submitted_users if user not in users_with_access]
